@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Create Art</title>
+	</head>
+	<body>
+		
+		<a href="{% url 'logout' %}">Log out</a>
+		<a href="{% url 'travels' %}">Home</a>
+
+		<h1>Create Art Instance</h1>
+		<form action="{% url 'create_trip' %}" method="POST">
+			{% csrf_token %}
+			<p>Art Name: <input type="text" name="artname"></p>
+			<p>Art Description: <input type="text" name="description"></p>
+
+			<input type="submit" value="Save New Art Work data">
+			<input type="file" name="filename" accept="image/gif, image/jpeg, image/png">
+		</form>
+	</body>
+</html>

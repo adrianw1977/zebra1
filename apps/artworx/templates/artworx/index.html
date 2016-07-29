@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Index</title>
+		<link href="{{STATIC_URL}}styles.css" rel="stylesheet" type="text/css">
+		{% load staticfiles %}
+		<img src="{% static "trips/images/content_icon3.png" %}" alt="My image"/>
+	</head>
+	<body>
+		<a href="{% url 'logout' %}">Log out</a>
+		<a href="{% url 'travels' %}">Home</a>
+
+		<h1>Welcome, {{name}}</h1>
+
+		<h3>Your points! {{curpts_user}}</h3>
+
+		<TABLE>
+		   <TR>
+		      <TD>Name</TD>
+		      <TD>UserName</TD>
+		      <TD>Points</TD>
+		   </TR>
+		   <TR>
+			{% for user in users %}
+			<TD>{{user.name}}</TD>
+			<TD>{{user.username}}</TD>
+			<TD>{{user.points}}</TD>
+			</TR>
+			{% endfor %}
+		</TABLE>
+		<br>
+		<TABLE>
+		   <TR>
+		      <TD>Name of Art Work</TD>
+		      <TD>Creator</TD>
+		      <TD>Description of Art Work</TD>
+		   </TR>
+		   <TR>
+			{% for artworx in artworxs %}
+			<TD>{{artworx.artname}}</TD>
+			<TD>{{artworx.creator}}</TD>
+			<TD>{{artworx.description}}</TD>
+			</TR>
+			{% endfor %}
+		</TABLE>
+		<br>
+		{% load staticfiles %}
+		<img src="{% static "trips/images/sayzan.png" %}" alt="My image"/>
+
+		<h3>painting_by_sayzanne_of_[country_name_?]</h3>
+		<h3>Your points! {{curpts_user}}</h3>
+		<p>Double your points just by taking this quiz!</p>
+		<form action="{% url 'login' %}" method="POST">
+			{% csrf_token %}
+			<select>
+			    <option selected disabled>What is the capital of South Dakota?</option>
+			    <option value="atlanta">Atlanta</option>
+			    <option value="sacramento">Sacramento</option>
+			    <option value="pierre">Pierre</option>
+			    <option value="montana">Montana</option>
+			</select>
+		</form>
+		<br>
+		<h3>Your session points new total! {{curpts_user}}</h3>
+		<br>
+		<p>Would you like to give this art instance a 'shout out'?</p>
+		<form action="{% url 'login' %}" method="POST">
+			{% csrf_token %}
+			<select>
+			    <option selected disabled>Yes/No ?</option>
+			    <option value="yes">yes</option>
+			    <option value="no">no</option>
+			</select>
+		    <input type="submit" value="provide answer"> 
+		</form>
+		<br>
+
+		<p>How many of your points would you like to assign to this art work?</p>
+		<form action="{% url 'login' %}" method="POST">
+			{% csrf_token %}
+			<select>
+			    <option selected disabled>Assign this many of my points please:</option>
+			    <option value="25">100</option>
+			    <option value="500">200</option>
+			    <option value="75">300</option>
+			    <option value="100">400</option>
+			</select>
+		</form>
+
+
+
+
+
+
+		<p>How many of your points would you like to assign to this art work?</p>
+		<form action="{% url 'create_trip' %}" method="POST">
+			{% csrf_token %}
+			<p>Art Name: <input type="text" name="artname"></p>
+			<input type="submit" value="additional points">
+		</form>
+
+		<h3>Your points! {{curpts_user}}</h3>
+		<br>
+		<a href="{% url 'new_plan' %}">Make a new art instance</a>
+
+	</body>
+</html>
